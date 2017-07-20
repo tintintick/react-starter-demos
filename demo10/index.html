@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>react demo10 component event</title>
+	<script type="text/javascript" src="../build/react.js"></script>
+	<script type="text/javascript" src="../build/react-dom.js"></script>
+	<script type="text/javascript" src="../build/JSXTransformer.js"></script>	
+</head>
+<body>
+	<div id="content"></div>
+	<script type="text/jsx">
+		var MyComponent = React.createClass({
+			getInitialState: function(){
+				return ({
+					styleData:{
+						opacity: 1, 
+						color: 'red',
+					},
+				})
+			},
+
+			componentDidMount: function(){
+				setInterval(function(){
+					var op = this.state.styleData.opacity;
+					if(op > 0.1){
+						op -= 0.05;
+						this.setState({
+							styleData: {opacity: op, color: 'red'}
+						});
+					}
+					else{
+						this.setState({
+							styleData: {opacity: 1, color: 'red'}
+						});
+					}
+				}.bind(this), 60);
+			},
+
+			render: function(){
+				return (
+					<h1 style={this.state.styleData}>DANGER!!!</h1>
+				);
+			}
+		});
+
+		ReactDOM.render(
+			<MyComponent />,
+			document.getElementById("content")
+		);
+	</script>
+</body>
+</html>

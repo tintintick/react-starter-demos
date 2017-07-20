@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>react demo08 state</title>
+	<script type="text/javascript" src="../build/react.js"></script>
+	<script type="text/javascript" src="../build/react-dom.js"></script>
+	<script type="text/javascript" src="../build/JSXTransformer.js"></script>	
+
+</head>
+<body>
+<div id="content"></div>
+<script type="text/jsx">
+	var LikeButton = React.createClass({
+		getInitialState: function(){
+			return ({
+				isLike: false,
+			});
+		},
+
+		handleClick: function(e){
+			e.preventDefault();
+			e.stopPropagation();
+			this.setState({
+				isLike: !this.state.isLike,
+			});
+		},
+
+		render: function(){
+			return (
+			<p>
+				you <strong>{this.state.isLike?"like":"dislike"}</strong> this demo, press this button to toggle
+				<br />
+				<button onClick={this.handleClick}>Toggle</button>
+			</p>
+			);
+		}
+	})
+	ReactDOM.render(
+		<LikeButton />,
+		document.getElementById("content")
+	)
+</script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>react demo11 ajax</title>
+	<script type="text/javascript" src="../build/react.js"></script>
+	<script type="text/javascript" src="../build/react-dom.js"></script>
+	<script type="text/javascript" src="../build/JSXTransformer.js"></script>
+	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+	<div id="content"></div>
+	<script type="text/jsx">
+		var GitList = React.createClass({
+			getInitialState: function(){
+				return ({
+					name: 'name',
+					url: 'html',
+					desc: 'description'
+				});
+			},
+			componentDidMount: function(){
+				$.ajax({
+					url: this.props.listPage,
+					dataType: 'json',
+					success: function(result, status){
+						this.setState({
+							name: result[0].owner.login,
+							url: result[0].html_url,
+							desc: result[0].description
+						});
+					}.bind(this),
+					error: function(xhr, errMsg){
+						console.error(errMsg);
+					},
+				});
+			},
+			componentWillUnmount: function(){
+				this.serveRequest.abort();
+			},
+			render: function(){
+				return (
+					<div>
+						<span>This is {this.state.name} respo</span>
+						<br/>
+						<a href={this.state.url}>{this.state.desc}</a>
+					</div>
+				);
+			},
+		});
+		ReactDOM.render(
+			<GitList listPage="https://api.github.com/users/octocat/gists" />,
+			document.getElementById("content")
+		);
+	</script>
+</body>
+</html>

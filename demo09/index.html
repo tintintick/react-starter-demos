@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>react demo09 form</title>
+	<script type="text/javascript" src="../build/react.js"></script>
+	<script type="text/javascript" src="../build/react-dom.js"></script>
+	<script type="text/javascript" src="../build/JSXTransformer.js"></script>
+</head>
+<body>
+	<div id="content"></div>
+	<script type="text/jsx">
+		var Input = React.createClass({
+			getInitialState: function(){
+				return {
+					value: "init value",
+				}
+			},
+
+			changeHandler: function(e){
+				e.stopPropagation();
+				e.preventDefault();
+				this.setState({
+					value: e.target.value,
+				})
+			},
+
+			render: function(){
+				return (
+					<div>
+						<input type="text" onChange={this.changeHandler} />
+						<p>{this.state.value}</p>
+					</div>
+				);
+			}
+		});
+		ReactDOM.render(
+			<Input/>,
+			document.getElementById("content")
+		)
+	</script>
+</body>
+</html>

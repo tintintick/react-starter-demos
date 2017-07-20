@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>react demo06 Get Real Dom</title>
+	<script type="text/javascript" src="../build/react.js"></script>
+	<script type="text/javascript" src="../build/react-dom.js"></script>
+	<script type="text/javascript" src="../build/JSXTransformer.js"></script>	
+</head>
+<body>
+	<div id="content"></div>
+	<script type="text/jsx">
+		var MyComponent = React.createClass({
+			handleClick: function(e){
+				e.preventDefault();
+				e.stopPropagation();
+				//alert(ReactDOM.findDOMNode(this.refs.words).value);
+				this.refs.output.innerHTML = this.refs.words.value;
+			},
+
+			changeHandler: function(e){
+				e.preventDefault();
+				e.stopPropagation();
+				this.refs.output.innerHTML = this.refs.words.value;
+			},
+
+			render: function(){
+				return (
+					<div>
+						<input type="text" ref="words" onChange={this.changeHandler} />
+						<button onClick={this.handleClick}>fun</button>
+						<br /><span ref="output"></span>
+					</div>
+				);
+			}
+		});
+		ReactDOM.render(
+			<MyComponent />,
+			document.getElementById("content")
+		);
+	</script>
+</body>
+</html>

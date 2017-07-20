@@ -1,0 +1,23 @@
+<html>
+<head>
+	<script type="text/javascript" src="../build/react.js"></script>
+	<script type="text/javascript" src="../build/react-dom.js"></script>
+	<script type="text/javascript" src="../build/JSXTransformer.js"></script>
+</head>
+<body>
+	<div id="content"></div>
+	<script type="text/jsx">
+		var testArr = ['小明','小李','小王'];
+		ReactDOM.render(
+			<ul>
+			{
+				testArr.map(function(item, index){
+					return (<li key={index}>{item}</li>);
+				})
+			}
+			</ul>,
+			document.getElementById("content")
+		);
+	</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>react demo06 PropTypes</title>
+	<script type="text/javascript" src="../build/react.js"></script>
+	<script type="text/javascript" src="../build/react-dom.js"></script>
+	<script type="text/javascript" src="../build/JSXTransformer.js"></script>	
+</head>
+<body>
+	<div id="content"></div>
+	<script type="text/jsx">
+		var TypeTest = React.createClass({
+			getDefaultProps: function(){
+				return ({
+					title: 123,//"default title",
+				});
+			},
+			
+			propTypes: {
+				title: React.PropTypes.string.isRequired,
+			},
+
+			render: function(){	
+				return (
+					<h1>
+					{this.props.title}
+					</h1>
+				);
+			}
+		});
+		ReactDOM.render(
+			<TypeTest />,
+			document.getElementById("content")
+		);
+	</script>
+</body>
+</html>

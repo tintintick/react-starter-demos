@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>react demo04</title>
+	<script type="text/javascript" src="../build/react.js"></script>
+	<script type="text/javascript" src="../build/react-dom.js"></script>
+	<script type="text/javascript" src="../build/JSXTransformer.js"></script>
+</head>
+<body>
+	<div id="content"></div>
+	<script type="text/jsx">
+		var HelloWorld = React.createClass({
+			render: function(){
+			 return (
+			 	<div>
+			 		<h1>Nice to meet you!</h1>
+			 		<span>This is <strong>{this.props.name}</strong> speaking!</span>
+			 	</div>
+			 )
+			}
+		});
+		ReactDOM.render(
+			<HelloWorld name='NYK' />,
+			document.getElementById("content")
+		);
+	</script>
+</body>
+</html>

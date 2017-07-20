@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>react demo05 props children</title>
+	<script type="text/javascript" src="../build/react.js"></script>
+	<script type="text/javascript" src="../build/react-dom.js"></script>
+	<script type="text/javascript" src="../build/JSXTransformer.js"></script>
+</head>
+<body>
+	<div id="content"></div>
+	<script type="text/jsx">
+		var WordList = React.createClass({
+			render: function(){
+				return (
+				<ol>
+					{
+						React.Children.map(this.props.children, function(item, index){
+							return (<li key={index}>{item}</li>);
+						})
+					}			
+				</ol>
+				);
+			}
+		});
+		ReactDOM.render(
+			<WordList>
+				<span>Tiger</span>
+				<span>Leon</span>
+			</WordList>,
+			document.getElementById("content")
+		);
+	</script>
+</body>
+</html>

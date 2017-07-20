@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>react demo03</title>
+	<script type="text/javascript" src="../build/react.js"></script>
+	<script type="text/javascript" src="../build/react-dom.js"></script>
+	<script type="text/javascript" src="../build/JSXTransformer.js"></script>
+</head>
+<body>
+	<div id="content"></div>
+	<script type="text/jsx">
+		// render时会将数组元素展开
+		var testArr = [
+			<h2 key="1">hello world!</h2>,
+			<a key="2">react is awesome!</a>
+		];
+		ReactDOM.render(
+			<div>
+				{testArr}
+			</div>,
+			document.getElementById("content")
+		);
+	</script>
+</body>
+</html>
